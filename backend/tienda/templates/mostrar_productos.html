@@ -12,6 +12,16 @@
         {% load static %}
     <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
     </div>
+<div class="d-flex justify-content-end">
+    <a href="#" class="btn btn-sm btn-success d-flex align-items-center" 
+       style="background-color: transparent; 
+              border: 10 solid red;   /* Borde rojo para pruebas */
+              /*rder: none; */
+              box-shadow: none; 
+              color: inherit;">
+        <img src="{% static 'imagenes/carrito.jpeg' %}" alt="Carrito" style="height: 40px;; width: 50px;; margin-right:8px;">
+    </a>
+</div>
 
     <div>
         <a href = "../agregar_producto" class="btn btn-sm btn-success">Agregar Producto ✚ </a>
