@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from tienda.models import Producto
 from tienda.forms import ProductoForm
 from django.forms import modelform_factory
@@ -53,5 +53,10 @@ def actualizar_producto(request, producto_id):
     data = {'producto_form': producto_form}
     return render(request, 'actualizar_producto.html', data)
 
-def eliminar_producto():
-    pass
+def eliminar_producto(request, producto_id):
+    producto = get_object_or_404(Producto, pk=producto_id) 
+
+    
+    
+    producto.delete()
+    return redirect('mostrar_productos')
