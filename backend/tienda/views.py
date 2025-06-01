@@ -5,9 +5,10 @@ from django.forms import modelform_factory
 from django.core.paginator import Paginator
 
 #testing push
-
+#puto el que lee
 #hoal
-
+#hoal2
+#hoal3
 ProductoForm = modelform_factory(Producto, exclude=[])
 
 
