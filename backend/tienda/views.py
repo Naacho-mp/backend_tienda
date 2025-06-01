@@ -37,8 +37,21 @@ def agregar_producto(request):
     return render(request, "agregar_producto.html", data)
 
 
-def actualizar_producto():
-    pass
+def actualizar_producto(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+
+    if request.method == 'POST':
+        producto_form = ProductoForm(request.POST, request.FILES, instance=producto)
+
+        if producto_form.is_valid():
+            producto_form.save()
+            return redirect('mostrar_productos')
+
+    else:
+        producto_form = ProductoForm(instance=producto)
+
+    data = {'producto_form': producto_form}
+    return render(request, 'actualizar_producto.html', data)
 
 def eliminar_producto():
     pass

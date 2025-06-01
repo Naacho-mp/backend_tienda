@@ -12,7 +12,7 @@
         {% load static %}
     <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
     </div>
-
+    
     <div>
         <a href = "../agregar_producto" class="btn btn-sm btn-success">Agregar Producto ✚ </a>
     </div>
@@ -22,7 +22,7 @@
            {% for p in page_obj %}
                 <div class="col-md-2">
                     <div class="card h-100 shadow-sm">
-                        <a href = "../agregar_producto" class="btn btn-sm btn-success">Editar ✚ </a>
+                        <a href="{% url 'actualizar_producto' p.id %}" class="btn btn-sm btn-primary">Editar</a>
                         {% if p.imagen %}
                             <img src="{{ p.imagen.url }}" class="card-img-top" alt="{{ p.nombre }}">
                         {% else %}

@@ -81,16 +81,15 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 import pymysql
 pymysql.install_as_MySQLdb()
+from dotenv import load_dotenv
 
-from decouple import config
-
+load_dotenv() 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD':config('DB_PASSWORD')
-
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
     }
 }
 

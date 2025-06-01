@@ -7,8 +7,8 @@
 3.- Crear archivo .env en la raiz del Proyecto con sus credenciales de la BD:
 
     - DB_NAME=tienda_online
-    - DB_USER=tu_usuario
-    - DB_PASSWORD=tu_pass
+    - DB_USER=root
+    - DB_PASSWORD=@Nicklix121q
     - DB_HOST=localhost
     - DB_PORT=3306
 
