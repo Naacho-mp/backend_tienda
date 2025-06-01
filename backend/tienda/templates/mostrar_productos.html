@@ -12,7 +12,7 @@
         {% load static %}
     <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
     </div>
-    
+
     <div>
         <a href = "../agregar_producto" class="btn btn-sm btn-success">Agregar Producto ✚ </a>
     </div>
@@ -36,7 +36,7 @@
                             <p class="card-text small"><strong>Stock:</strong> {{ p.stock }}</p>
                             <p class="card-text small"><strong>Categoría:</strong> {{ p.categoria }}</p>
                             <a href="{% url 'actualizar_producto' p.id %}" class="btn btn-warning btn-sm w-100 mb-1">Editar</a>
-                            <a href="" class="btn btn-danger btn-sm w-100 mb-2">Eiminar</a>
+                            <a href="{% url 'eliminar_producto' p.id %}" class="btn btn-danger btn-sm w-100 mb-2">Eiminar</a>
 
                         </div>
                     </div>
