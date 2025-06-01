@@ -21,6 +21,7 @@ def mostrar_productos(request):
     return render(request, 'mostrar_productos.html', {'page_obj': page_obj,})
 
 
+
 def ver_producto():
     pass
 
