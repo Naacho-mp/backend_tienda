@@ -22,8 +22,10 @@ def mostrar_productos(request):
 
 
 
-def ver_producto():
-    pass
+def ver_producto(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    return render(request, 'ver_producto.html', {'producto': producto})
+
 
 
 def agregar_producto(request):

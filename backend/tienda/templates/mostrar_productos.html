@@ -45,7 +45,7 @@
                             <p class="card-text small"><strong>Precio:</strong> ${{ p.precio }}</p>
                             <p class="card-text small"><strong>Stock:</strong> {{ p.stock }}</p>
                             <p class="card-text small"><strong>Categoría:</strong> {{ p.categoria }}</p>
-                            <a href="" class="btn btn-success btn-sm w-100 mb-2">Ver</a>
+                            <a href="{% url 'ver_producto' p.id %}" class="btn btn-success btn-sm w-100 mb-2">Ver</a>
                             <a href="{% url 'actualizar_producto' p.id %}" class="btn btn-warning btn-sm w-100 mb-1">Editar</a>
                             <a href="{% url 'eliminar_producto' p.id %}" class="btn btn-danger btn-sm w-100 mb-2">Eiminar</a>
 

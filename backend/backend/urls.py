@@ -23,6 +23,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mostrar_productos/', mostrar_productos, name='mostrar_productos'),
+    path('ver_producto/<int:producto_id>/', ver_producto, name='ver_producto'),
     path('agregar_producto/', agregar_producto, name='agregar_producto'),
     path('actualizar_producto/<int:producto_id>/', actualizar_producto, name='actualizar_producto'),
     path('eliminar_producto/<int:producto_id>/', eliminar_producto, name='eliminar_producto'),
