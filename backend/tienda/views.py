@@ -6,6 +6,8 @@ from django.core.paginator import Paginator
 
 #testing push
 
+#hoal
+
 ProductoForm = modelform_factory(Producto, exclude=[])
 
 
