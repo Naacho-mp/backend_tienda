@@ -4,6 +4,7 @@ from tienda.forms import ProductoForm
 from django.forms import modelform_factory
 from django.core.paginator import Paginator
 
+#testing push
 
 ProductoForm = modelform_factory(Producto, exclude=[])
 
