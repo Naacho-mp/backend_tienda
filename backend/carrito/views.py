@@ -46,3 +46,9 @@ def eliminar_del_carrito(request, producto_id):
 
     request.session['carrito'] = carrito
     return redirect('ver_producto')
+
+def pagado(request):
+    carrito = request.session.get('carrito', {})
+
+    request.session['carrito'] = {}
+    return render(request, 'carrito/pagado.html')
