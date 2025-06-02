@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+    <h2>Iniciar Sesión</h2>
+
+    <form method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <button type = 'submit'>Enviar</button>
+        <a href = "{% url 'agregar_usuario' %}" class="btn btn-sm btn-success mb-3">Registrarse</a>
+    </form>
+    
+</body>
+</html>
