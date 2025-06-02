@@ -12,6 +12,7 @@
         {% load static %}
     <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
     </div>
+
 <div class="d-flex justify-content-end">
     <a href="#" class="btn btn-sm btn-success d-flex align-items-center" 
        style="background-color: transparent; 
@@ -24,7 +25,9 @@
 </div>
 
     <div>
-        <a href = "../agregar_producto" class="btn btn-sm btn-success">Agregar Producto ✚ </a>
+        <a href = "../agregar_producto" class="btn btn-sm btn-success mb-3">Agregar Producto ✚ </a>
+        <a href = "../mostrar_categorias" class="btn btn-sm btn-success mb-3">Ver Categorias 🔍</a>
+
     </div>
 
     {% if page_obj %}

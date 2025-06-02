@@ -1,12 +1,15 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from tienda.models import Producto
-from tienda.forms import ProductoForm
+from tienda.models import Producto, Categoria
+from tienda.forms import ProductoForm, CategoriaForm
 from django.forms import modelform_factory
 from django.core.paginator import Paginator
 
 
 ProductoForm = modelform_factory(Producto, exclude=[])
+CategoriaForm = modelform_factory(Categoria, exclude=[])
 
+
+########################## CRUD PRODUCTO ###################################
 
 def mostrar_productos(request):
     productos = Producto.objects.all()
@@ -67,3 +70,51 @@ def eliminar_producto(request, producto_id):
 
 def carrito(request):
     pass
+
+########################## CRUD CATEGORIA ####################################
+
+def mostrar_categorias(request):
+    categorias = Categoria.objects.all()
+    data = {"categorias":categorias}
+
+    return render (request, "mostrar_categorias.html", data)
+
+def agregar_categoria(request):
+    if request.method == 'POST':
+        categoria_form = CategoriaForm(request.POST, request.FILES)
+
+        if categoria_form.is_valid():
+            categoria_form.save()
+            return redirect('mostrar_categorias')
+
+    else:
+        categoria_form = CategoriaForm()
+        
+    data = {'categoria_form':categoria_form}
+    return render(request, "agregar_categoria.html", data)
+
+
+def actualizar_categoria(request, categoria_id):
+    categoria = Categoria.objects.get(id=categoria_id)
+
+    if request.method == 'POST':
+        categoria_form = CategoriaForm(request.POST, request.FILES, instance=categoria)
+
+        if categoria_form.is_valid():
+            categoria_form.save()
+            return redirect('mostrar_categorias')
+
+    else:
+        categoria_form = CategoriaForm(instance=categoria)
+
+    data = {'categoria_form': categoria_form}
+    return render(request, 'actualizar_categoria.html', data)
+
+
+
+def eliminar_categoria(request, categoria_id):
+    categoria = get_object_or_404(Categoria, pk=categoria_id) 
+
+    categoria.delete()
+    return redirect('mostrar_categorias')
+
