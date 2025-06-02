@@ -12,7 +12,13 @@
         <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
     </div>
 
-    <h2 class="mt-4 mb-3">Carrito de Compras</h2>
+    {% if user.is_authenticated %}
+        <h2 class="mt-4 mb-3">Carrito de Compras de <strong>{{user.username|upper}}</strong></h2>
+    {% else %}
+    
+        <h2 class="mt-4 mb-3">Carrito de Compras </h2>
+
+    {% endif %}
 
     {% if carrito %}
         <table class="table table-bordered">

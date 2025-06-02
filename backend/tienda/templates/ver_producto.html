@@ -20,7 +20,7 @@
         <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
     </div>
 
-    <p>Productos en el carrito: {{ request.session.carrito|length }}</p>
+    <!-- <p>Productos en el carrito: {{ request.session.carrito|length }}</p> -->
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <a href="{% url 'mostrar_productos' %}" class="btn btn-outline-secondary btn-sm fs-6">
