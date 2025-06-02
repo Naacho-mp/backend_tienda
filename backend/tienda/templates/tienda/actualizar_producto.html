@@ -5,25 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualizar Producto</title>
 </head>
-<body>
-    <h1>Actualizar Producto</h1>
+{% if user.is_authenticated %}
+    <body>
+        <h1>Actualizar Producto</h1>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-        {% if producto_form.instance.imagen %}
+            {% if producto_form.instance.imagen %}
 
-        <p><strong>Imagen actual:</strong></p>
-        <img src="{{ producto_form.instance.imagen.url }}" width="150" class="mb-3">
+            <p><strong>Imagen actual:</strong></p>
+            <img src="{{ producto_form.instance.imagen.url }}" width="150" class="mb-3">
 
-        {% endif %}
+            {% endif %}
 
-        {{ producto_form.as_p }}
+            {{ producto_form.as_p }}
+                
+            <button type="submit">Enviar</button>
             
-        <button type="submit">Enviar</button>
-        
 
 
-    </form>    
-</body>
+        </form>    
+    </body>
+{% else %}
+        <p>
+            Usted no ha iniciado Sesión
+            </br>
+            <a href = "{% url 'login' %}">Iniciar Sesión</a>
+        </p>
+
+    {% endif %}
 </html>
