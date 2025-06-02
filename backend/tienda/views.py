@@ -78,7 +78,7 @@ def mostrar_categorias(request):
     categorias = Categoria.objects.all()
     data = {"categorias":categorias}
 
-    return render (request, "mostrar_categorias.html", data)
+    return render (request, "categoria/mostrar_categorias.html", data)
 
 def agregar_categoria(request):
     if request.method == 'POST':
@@ -109,7 +109,7 @@ def actualizar_categoria(request, categoria_id):
         categoria_form = CategoriaForm(instance=categoria)
 
     data = {'categoria_form': categoria_form}
-    return render(request, 'actualizar_categoria.html', data)
+    return render(request, 'mostrar/actualizar_categoria.html', data)
 
 
 
