@@ -53,7 +53,7 @@ urlpatterns += [
     ]
 
 urlpatterns += [
-    path('agregar_usuario/', agregar_usuario, name='agregar_usuario'),
+    path('agregar_usuario/', agregar_usuario, name='agregar_usuario'),  
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', logout_view, name='logout'),
     ]
