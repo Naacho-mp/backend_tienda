@@ -20,7 +20,7 @@
             <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
         </div>
 
-        <p>Productos en el carrito: {{ request.session.carrito|length }}</p>
+        <!-- <p>Productos en el carrito: {{ request.session.carrito|length }}</p> -->
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <a href="{% url 'mostrar_productos' %}" class="btn btn-outline-secondary btn-sm fs-6">
@@ -28,12 +28,12 @@
             </a>
 
             <a href="{% url 'ver_carrito' %}" class="btn btn-sm btn-success d-flex align-items-center"
-            style="background-color: transparent; box-shadow: none; color: inherit;">
-                <img src="{% static 'imagenes/carrito.jpeg' %}" alt="Carrito" style="height: 40px; width: 50px; margin-right:8px;">
+                style="background-color: transparent; box-shadow: none; color: inherit;">
+                <img src="{% static 'imagenes/carrito2.jpg' %}" alt="Carrito" style="height: 40px; width: 50px; margin-right:8px;">
             </a>
         </div>
 
-        <div class="row mt-5 justify-content-center">
+        <div class="row mt-5 justify-content-center mb-4">
             <div class="col-lg-5 col-md-6 border p-4 text-center">
                 {% if producto.imagen %}
                     <img src="{{ producto.imagen.url }}" class="img-fluid rounded img-producto" alt="{{ producto.nombre }}">
@@ -47,7 +47,7 @@
                 <p class="fs-5"><strong>Descripción:</strong> {{ producto.descripcion|default:"Sin descripción" }}</p>
                 <p class="fs-5"><strong>Precio:</strong> ${{ producto.precio }}</p>
                 <p class="fs-5"><strong>Stock:</strong> {{ producto.stock }}</p>
-                <p class="fs-5"><strong>Categoría:</strong> {{ producto.categoria }}</p>
+                <p class="fs-5"><strong>Categoría:</strong> {{ producto.categoria.nombre }}</p>
 
             <form action="{% url 'agregar_al_carrito' producto.id %}" method="POST">
                 {% csrf_token %}
@@ -61,11 +61,11 @@
         </div>
     </body>
 {% else %}
-        <p>
-            Usted no ha iniciado Sesión
-            </br>
-            <a href = "{% url 'login' %}">Iniciar Sesión</a>
-        </p>
+    <p>
+        Usted no ha iniciado Sesión
+        </br>
+        <a href = "{% url 'login' %}">Iniciar Sesión</a>
+    </p>
 
-    {% endif %}
+{% endif %}
 </html>
