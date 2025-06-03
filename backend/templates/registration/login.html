@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleLogin.css' %}">
 </head>
 <body class="body">
-     <img src="{% static 'imagenes/logo.png' %}" height="80" alt="Logo">
+     <img src="{% static 'imagenes/logo.png' %}" height="200" alt="Logo">
     <h2>Iniciar Sesión</h2>
 
     <form method="post">
@@ -17,6 +17,8 @@
         <button type = 'submit'>Enviar</button>
         <a href = "{% url 'agregar_usuario' %}" class="btn btn-sm btn-success mb-3">Registrarse</a>
     </form>
-    
+    <nav>
+        <a href="/mostrar_productos">🔙 volver a productos</a>
+    </nav>
 </body>
 </html>

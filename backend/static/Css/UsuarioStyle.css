@@ -1,0 +1,19 @@
+body {
+    min-height: 100vh;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    display: grid; 
+    place-content: center;
+    font-size: x-large;
+    background-color: bisque;
+    color: navy
+}
+button {
+   font-size: x-large;   
+   background-color: black;
+   color: aliceblue;
+
+}
+form{ 
+    color: black;
+}

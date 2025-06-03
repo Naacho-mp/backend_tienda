@@ -1,0 +1,46 @@
+*{  
+   margin: 0; 
+   padding: 0;
+   box-sizing: border-box;
+}
+nav {
+    position: fixed;       
+    top: 0;              
+    left: 0;             
+    width: 100%;          
+    text-align: left;
+    padding: 1rem;
+    background-color: blanchedalmond;
+    color: white;
+    font-size: 2.5rem;
+    z-index: 1000;          
+}
+body {
+    min-height: 100vh;
+    font-weight: bolder;
+    display: grid; 
+    place-content: center;
+    font-size: x-large;
+    background-color: bisque;
+    color:grey
+}
+img, p{
+    text-align:left;
+
+}
+h1, p{
+    text-align: center;
+}
+
+h2, p{
+    text-align: center;
+    text-decoration: underline;
+    color: royalblue gold
+}
+a, p{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+button, p{
+    font-size: large;
+}
