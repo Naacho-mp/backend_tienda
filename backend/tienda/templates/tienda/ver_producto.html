@@ -34,7 +34,7 @@
         </div>
 
         <div class="row mt-5 justify-content-center mb-4">
-            <div class="col-lg-5 col-md-6 border p-4 text-center">
+            <div class="col-lg-4 col-md-5 border p-4 text-center">
                 {% if producto.imagen %}
                     <img src="{{ producto.imagen.url }}" class="img-fluid rounded img-producto" alt="{{ producto.nombre }}">
                 {% else %}
@@ -42,12 +42,12 @@
                 {% endif %}
             </div>
 
-            <div class="col-lg-5 col-md-6 border p-5">
+            <div class="col-lg-4 col-md-5 border p-5">
                 <h2 class="mb-4">{{ producto.nombre }}</h2>
-                <p class="fs-5"><strong>Descripción:</strong> {{ producto.descripcion|default:"Sin descripción" }}</p>
-                <p class="fs-5"><strong>Precio:</strong> ${{ producto.precio }}</p>
-                <p class="fs-5"><strong>Stock:</strong> {{ producto.stock }}</p>
-                <p class="fs-5"><strong>Categoría:</strong> {{ producto.categoria.nombre }}</p>
+                <p class="fs-5"><small><strong>Descripción: </strong>{{ producto.descripcion|default:"Sin descripción" }}</small></p>
+                <p class="fs-5"><small><strong>Precio: </strong> ${{ producto.precio }}</small></p>
+                <p class="fs-5"><small><strong>Stock: </strong> {{ producto.stock }}</small></p>
+                <p class="fs-5"><small><strong>Categoría: </strong> {{ producto.categoria.nombre }}</small></p>
 
             <form action="{% url 'agregar_al_carrito' producto.id %}" method="POST">
                 {% csrf_token %}
