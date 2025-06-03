@@ -7,11 +7,20 @@
     <link rel="stylesheet" href="{% static 'css/UsuarioStyle.css' %}">
 </head>
 <body>
-        <h2>Crear cuenta</h2>
+    <div class="register-box">
+        <div class="register-header">
+            <header>Crear Cuenta</header>
+        </div>
+
         <form method="post">
             {% csrf_token %}
             {{ usuario_form.as_p }}
-            <button type="submit">Registrarse</button>
+
+            <div class="input-submit">
+                <button type="submit" class="submit-btn" id="submit"></button>
+                <label for="submit">Registrarse</label>
+            </div>
         </form>
+    </div>
 </body>
 </html>
