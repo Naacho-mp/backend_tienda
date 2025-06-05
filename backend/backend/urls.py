@@ -21,6 +21,7 @@ from carrito.views import *
 from usuario.views import *
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic.base import RedirectView
 
 
 
@@ -57,6 +58,7 @@ urlpatterns += [
 
 urlpatterns += [
     # Login, Logout usuario URLs
+    path('', RedirectView.as_view(url='/accounts/login/', permanent=False)),
     path('agregar_usuario/', agregar_usuario, name='agregar_usuario'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', logout_view, name='logout'),
