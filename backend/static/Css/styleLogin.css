@@ -38,7 +38,6 @@ body {
     font-weight: 600;
 }
 
-/* Estilo a inputs sin necesidad de clases */
 input[type="text"],
 input[type="password"] {
     width: 100%;
@@ -58,12 +57,10 @@ input[type="password"]:focus {
     width: 105%;
 }
 
-/* Estilo para los párrafos que Django pone alrededor */
 form p {
     margin-bottom: 15px;
 }
 
-/* Placeholder opcional si quieres que se vea más bonito */
 ::placeholder {
     font-weight: 500;
     color: #222;

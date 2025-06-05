@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Actualizar Producto</title>
+    <link rel="stylesheet" href="{% static 'css/styleAgregarProducto.css' %}"> 
 </head>
+<body>
 {% if user.is_authenticated %}
-    <body>
-        <h1>Actualizar Producto</h1>
+    <div class="form-box">
+        <div class="form-header">
+            <header>Actualizar Producto</header>
+        </div>
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
             {% if producto_form.instance.imagen %}
-
-            <img src="{{ producto_form.instance.imagen.url }}" width="150" class="mb-3">
-
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="{{ producto_form.instance.imagen.url }}" width="150">
+                </div>
             {% endif %}
 
-            {{ producto_form.as_p }}
-                
-            <button type="submit">Enviar</button>
-            
+            <div>
+                {{ producto_form.as_p }}
+            </div>
 
+            <div class="input-submit">
+                <button type="submit" class="submit-btn">Actualizar</button>
+            </div>
+        </form>
+    </div>
 
-        </form>    
-    </body>
-{% else %}
-        <p>
-            Usted no ha iniciado Sesión
-            </br>
-            <a href = "{% url 'login' %}">Iniciar Sesión</a>
-        </p>
-
+    <!-- Alertas excepciones -->
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            alert("{{ message|escapejs }}");
+        </script>
+        {% endfor %}
     {% endif %}
+
+{% else %}
+    <p style="text-align: center; margin-top: 50px;">
+        Usted no ha iniciado sesión.
+        <br />
+        <a href="{% url 'login' %}">Iniciar sesión</a>
+    </p>
+{% endif %}
+</body>
 </html>

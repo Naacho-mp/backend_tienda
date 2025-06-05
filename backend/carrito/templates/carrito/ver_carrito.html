@@ -24,18 +24,16 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Producto</th>
                     <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Subtotal</th>
-                    <th>Eliminar</th>
+                    <th>Quitar</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in carrito %}
                     <tr>
-                        <td>{{ item.producto.id }}</td>
                         <td>{{ item.producto.nombre }}</td>
                         <td>${{ item.producto.precio }}</td>
                         <td>{{ item.cantidad }}</td>
@@ -43,7 +41,7 @@
                         <td>
                             <form method="post" action="{% url 'eliminar_del_carrito' item.producto.id %}">
                                 {% csrf_token %}
-                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                                <button class="btn btn-danger btn-sm">Quitar</button>
                             </form>
                         </td>
                     </tr>
