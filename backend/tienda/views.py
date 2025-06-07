@@ -31,12 +31,6 @@ def ver_producto(request, producto_id):
     return render(request, 'tienda/ver_producto.html', {'producto': producto})
 
 
-
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Producto
-from .forms import ProductoForm
-
 def agregar_producto(request):
     if request.method == 'POST':
         producto_form = ProductoForm(request.POST, request.FILES)
@@ -113,7 +107,7 @@ def agregar_categoria(request):
         categoria_form = CategoriaForm()
         
     data = {'categoria_form':categoria_form}
-    return render(request, "agregar_categoria.html", data)
+    return render(request, "categoria/agregar_categoria.html", data)
 
 
 def actualizar_categoria(request, categoria_id):
@@ -130,7 +124,7 @@ def actualizar_categoria(request, categoria_id):
         categoria_form = CategoriaForm(instance=categoria)
 
     data = {'categoria_form': categoria_form}
-    return render(request, 'mostrar/actualizar_categoria.html', data)
+    return render(request, 'categoria/actualizar_categoria.html', data)
 
 
 
