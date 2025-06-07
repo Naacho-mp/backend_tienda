@@ -41,6 +41,7 @@ urlpatterns += [
     path('ver_carrito/', ver_carrito, name='ver_carrito'),
     path('eliminar_del_carrito/<int:producto_id>/', eliminar_del_carrito, name='eliminar_del_carrito'),
     path('pagado/', pagado, name='pagado'),
+    path('boleta-productos/', boleta, name='generar_boleta_productos'),
     ]
 
 
