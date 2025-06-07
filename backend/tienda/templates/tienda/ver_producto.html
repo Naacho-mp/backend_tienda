@@ -22,21 +22,21 @@
             <img src="{% static 'imagenes/logo.jpeg' %}" height="80" alt="Logo">
         </div>
 
-        <!-- <p>Productos en el carrito: {{ request.session.carrito|length }}</p> -->
+        <p>Productos en el carrito: {{ request.session.carrito|length }}</p>
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <a href="{% url 'mostrar_productos' %}" class="btn btn-outline-secondary btn-sm fs-6">
-                < Volver
+                ← Volver
             </a>
 
             <a href="{% url 'ver_carrito' %}" class="btn btn-sm btn-success d-flex align-items-center"
-                style="background-color: transparent; box-shadow: none; color: inherit;">
-                <img src="{% static 'imagenes/carrito2.jpg' %}" alt="Carrito" style="height: 40px; width: 50px; margin-right:8px;">
+            style="background-color: transparent; box-shadow: none; color: inherit;">
+                <img src="{% static 'imagenes/carrito.jpeg' %}" alt="Carrito" style="height: 40px; width: 50px; margin-right:8px;">
             </a>
         </div>
 
-        <div class="row mt-5 justify-content-center mb-4">
-            <div class="col-lg-4 col-md-5 border p-4 text-center">
+        <div class="row mt-5 justify-content-center">
+            <div class="col-lg-5 col-md-6 border p-4 text-center">
                 {% if producto.imagen %}
                     <img src="{{ producto.imagen.url }}" class="img-fluid rounded img-producto" alt="{{ producto.nombre }}">
                 {% else %}
@@ -44,45 +44,30 @@
                 {% endif %}
             </div>
 
-            <div class="col-lg-4 col-md-5 border p-5">
+            <div class="col-lg-5 col-md-6 border p-5">
                 <h2 class="mb-4">{{ producto.nombre }}</h2>
-                <p class="fs-5"><small><strong>Descripción: </strong>{{ producto.descripcion|default:"Sin descripción" }}</small></p>
-                <p class="fs-5"><small><strong>Precio: </strong> ${{ producto.precio }}</small></p>
-                <p class="fs-5"><small><strong>Stock: </strong> {{ producto.stock }}</small></p>
-                <p class="fs-5"><small><strong>Categoría: </strong> {{ producto.categoria.nombre }}</small></p>
+                <p class="fs-5"><strong>Descripción:</strong> {{ producto.descripcion|default:"Sin descripción" }}</p>
+                <p class="fs-5"><strong>Precio:</strong> ${{ producto.precio }}</p>
+                <p class="fs-5"><strong>Stock:</strong> {{ producto.stock }}</p>
+                <p class="fs-5"><strong>Categoría:</strong> {{ producto.categoria }}</p>
 
             <form action="{% url 'agregar_al_carrito' producto.id %}" method="POST">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="cantidad" class="form-label">Cantidad:</label>
-                    <input type="number" id="cantidad" name="cantidad" class="form-control" value="1" min="1">
+                    <input type="number" id="cantidad" name="cantidad" class="form-control" value="1" min="1" max="{{ producto.stock }}">
                 </div>
                 <button type="submit" class="btn btn-dark btn-lg w-100 mt-4 py-2 fs-5">AGREGAR AL CARRITO</button>
             </form>
-
             </div>
         </div>
-
-        <!-- Alertas excepciones -->
-        {% if messages %}
-        
-            {% for message in messages %}
-            <script>
-                alert("{{ message|escapejs }}");
-            </script>
-            {% endfor %}
-        
-        {% endif %}
-
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 {% else %}
-    <p>
-        Usted no ha iniciado Sesión
-        </br>
-        <a href = "{% url 'login' %}">Iniciar Sesión</a>
-    </p>
+        <p>
+            Usted no ha iniciado Sesión
+            </br>
+            <a href = "{% url 'login' %}">Iniciar Sesión</a>
+        </p>
 
-{% endif %}
+    {% endif %}
 </html>

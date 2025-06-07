@@ -9,7 +9,7 @@ from django.contrib import messages
 ProductoForm = modelform_factory(Producto, exclude=[])
 CategoriaForm = modelform_factory(Categoria, exclude=[])
 
-
+##puto el que lea
 ########################## CRUD PRODUCTO ###################################
 
 def mostrar_productos(request):

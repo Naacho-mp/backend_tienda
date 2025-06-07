@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <title>Registro de Usuario</title>
 </head>
-<body>
-    <h2>Crear cuenta</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ usuario_form.as_p }}
-        <button type="submit">Registrarse</button>
-    </form>
-</body>
+if user.is_authenticated %}
+    <body>
+        <h2>Crear cuenta</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ usuario_form.as_p }}
+            <button type="submit">Registrarse</button>
+        </form>
+    </body>
+{% else %}
+        <p>
+            Usted no ha iniciado Sesión
+            </br>
+            <a href = "{% url 'login' %}">Iniciar Sesión</a>
+        </p>
+
+    {% endif %}
 </html>
