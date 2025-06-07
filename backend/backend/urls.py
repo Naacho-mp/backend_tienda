@@ -21,6 +21,10 @@ from carrito.views import *
 from usuario.views import *
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic.base import RedirectView
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +37,7 @@ urlpatterns += [
     path('agregar_producto/', agregar_producto, name='agregar_producto'),
     path('actualizar_producto/<int:producto_id>/', actualizar_producto, name='actualizar_producto'),
     path('eliminar_producto/<int:producto_id>/', eliminar_producto, name='eliminar_producto'),
+    path('productos/categoria/<int:categoria_id>/', productos_por_categoria, name='productos_por_categoria'),
     ]
 
 urlpatterns += [    
@@ -51,9 +56,13 @@ urlpatterns += [
     path('agregar_categoria/', agregar_categoria, name='agregar_categoria'),
     path('actualizar_categoria/<int:categoria_id>/', actualizar_categoria, name='actualizar_categoria'),
     path('eliminar_categoria/<int:categoria_id>/', eliminar_categoria, name='eliminar_categoria'),
+    
+
     ]
 
 urlpatterns += [
+    # Login, Logout usuario URLs
+    path('', RedirectView.as_view(url='/accounts/login/', permanent=False)),
     path('agregar_usuario/', agregar_usuario, name='agregar_usuario'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', logout_view, name='logout'),

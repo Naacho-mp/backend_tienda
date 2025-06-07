@@ -4,7 +4,7 @@ from tienda.forms import ProductoForm, CategoriaForm
 from django.forms import modelform_factory
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST
-
+from django.contrib import messages
 
 ProductoForm = modelform_factory(Producto, exclude=[])
 CategoriaForm = modelform_factory(Categoria, exclude=[])
@@ -31,43 +31,79 @@ def ver_producto(request, producto_id):
     return render(request, 'tienda/ver_producto.html', {'producto': producto})
 
 
-
 def agregar_producto(request):
     if request.method == 'POST':
         producto_form = ProductoForm(request.POST, request.FILES)
 
         if producto_form.is_valid():
-            producto_form.save()
-            return redirect('mostrar_productos')
+            imagen = request.FILES.get('imagen')
+            if imagen and imagen.content_type not in ['image/jpeg', 'image/png']:
+                messages.error(request, "Error: Solo se permiten imágenes JPEG o PNG.")
+                return render(request, 'tienda/actualizar_producto.html', {'producto_form': producto_form})
 
+            precio = producto_form.cleaned_data.get('precio')
+            stock = producto_form.cleaned_data.get('stock')
+
+            if precio< 0 or stock < 0:
+                messages.error(request, "Error: el precio y el stock deben ser positivos.")
+            else:
+                producto_form.save()
+                messages.success(request, "¡Producto Agregado exitosamente!")
+                return redirect('mostrar_productos')
+        else:
+            messages.error(request, "Formulario inválido. Verifica los datos.")
     else:
         producto_form = ProductoForm()
-        
-    data = {'producto_form':producto_form}
-    return render(request, "tienda/agregar_producto.html", data)
+
+    return render(request, 'tienda/agregar_producto.html', {'producto_form': producto_form})
+
+
 
 
 def actualizar_producto(request, producto_id):
-    producto = Producto.objects.get(id=producto_id)
+    producto = get_object_or_404(Producto, id=producto_id)
 
     if request.method == 'POST':
         producto_form = ProductoForm(request.POST, request.FILES, instance=producto)
 
         if producto_form.is_valid():
-            producto_form.save()
-            return redirect('mostrar_productos')
+            imagen = request.FILES.get('imagen')
+            if imagen and imagen.content_type not in ['image/jpeg', 'image/png']:
+                messages.error(request, "Error: Solo se permiten imágenes JPEG o PNG.")
+                return render(request, 'tienda/actualizar_producto.html', {'producto_form': producto_form})
 
+            precio = producto_form.cleaned_data.get('precio')
+            stock = producto_form.cleaned_data.get('stock')
+
+            if precio < 0 or stock < 0:
+                messages.error(request, "Error: el precio y el stock deben ser positivos.")
+
+            else:
+                producto_form.save()
+                messages.success(request, "¡Producto Actualizado exitosamente!")
+                return redirect('mostrar_productos')
     else:
         producto_form = ProductoForm(instance=producto)
 
     data = {'producto_form': producto_form}
     return render(request, 'tienda/actualizar_producto.html', data)
 
+
 def eliminar_producto(request, producto_id):
     producto = get_object_or_404(Producto, pk=producto_id) 
 
     producto.delete()
     return redirect('mostrar_productos')
+
+def productos_por_categoria(request, categoria_id):
+    categoria = get_object_or_404(Categoria, id=categoria_id)
+    productos = Producto.objects.filter(categoria=categoria)
+
+    return render(request, 'tienda/productos_filtrados.html', {
+        'categoria': categoria,
+        'productos': productos
+    })
+
 
 
 
@@ -92,7 +128,7 @@ def agregar_categoria(request):
         categoria_form = CategoriaForm()
         
     data = {'categoria_form':categoria_form}
-    return render(request, "agregar_categoria.html", data)
+    return render(request, "categoria/agregar_categoria.html", data)
 
 
 def actualizar_categoria(request, categoria_id):
@@ -109,7 +145,7 @@ def actualizar_categoria(request, categoria_id):
         categoria_form = CategoriaForm(instance=categoria)
 
     data = {'categoria_form': categoria_form}
-    return render(request, 'mostrar/actualizar_categoria.html', data)
+    return render(request, 'categoria/actualizar_categoria.html', data)
 
 
 
