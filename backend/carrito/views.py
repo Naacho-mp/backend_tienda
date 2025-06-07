@@ -3,12 +3,6 @@ from tienda.models import Producto
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa  # ¡Cambio clave aquí!
-from django.conf import settings
-import os
-
 def agregar_al_carrito(request, producto_id):
     producto = get_object_or_404(Producto, pk=producto_id)
 

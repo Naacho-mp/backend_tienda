@@ -7,24 +7,17 @@
     <title>Actualizar Producto</title>
     <link rel="stylesheet" href="{% static 'css/styleAgregarProducto.css' %}"> 
 </head>
-<<<<<<< HEAD
 <body>
 {% if user.is_authenticated %}
     <div class="form-box">
         <div class="form-header">
             <header>Actualizar Producto</header>
         </div>
-=======
-{% if user.is_authenticated %}
-    <body>
-        <h1>Actualizar Producto</h1>
->>>>>>> origin/Nicklix
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
             {% if producto_form.instance.imagen %}
-<<<<<<< HEAD
                 <div style="text-align: center; margin-bottom: 20px;">
                     <img src="{{ producto_form.instance.imagen.url }}" width="150">
                 </div>
@@ -58,27 +51,3 @@
 {% endif %}
 </body>
 </html>
-=======
-
-            <img src="{{ producto_form.instance.imagen.url }}" width="150" class="mb-3">
-
-            {% endif %}
-
-            {{ producto_form.as_p }}
-                
-            <button type="submit">Enviar</button>
-            
-
-
-        </form>    
-    </body>
-{% else %}
-        <p>
-            Usted no ha iniciado Sesión
-            </br>
-            <a href = "{% url 'login' %}">Iniciar Sesión</a>
-        </p>
-
-    {% endif %}
-</html>
->>>>>>> origin/Nicklix
