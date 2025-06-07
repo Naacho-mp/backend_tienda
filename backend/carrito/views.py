@@ -68,14 +68,16 @@ def eliminar_del_carrito(request, producto_id):
 
 def pagado(request):
     carrito = request.session.get('carrito', {})
-
+    
+    request.session['boleta_carrito'] = carrito
     request.session['carrito'] = {}
     return render(request, 'carrito/pagado.html')
 
 
 
+
 def boleta(request):
-    carrito = request.session.get('carrito', {})
+    carrito = request.session.get('boleta_carrito', {})
     productos = Producto.objects.filter(id__in=carrito.keys())
     
     # Preparar los datos del carrito para la boleta
