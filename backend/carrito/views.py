@@ -6,7 +6,11 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa  # ¡Cambio clave aquí!
 from django.conf import settings
+from datetime import datetime
 import os
+
+
+
 def agregar_al_carrito(request, producto_id):
     producto = get_object_or_404(Producto, pk=producto_id)
 
@@ -89,7 +93,7 @@ def boleta(request):
             'categoria': producto.categoria.nombre if producto.categoria else "Sin categoría"
         })
     
-    from datetime import datetime
+    
     fecha_actual = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     
     template_path = 'Boleta.html'
